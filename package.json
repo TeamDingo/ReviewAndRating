@@ -1,0 +1,36 @@
+{
+  "name": "reviewandrating",
+  "version": "1.0.0",
+  "description": "RnR SDC",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --ignore node_modules server",
+    "test": "mocha --bail --reporter nyan test/ServerSpec.js; pkill -n nodemon;"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TeamDingo/ReviewAndRating.git"
+  },
+  "author": "Pingping Xiao",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TeamDingo/ReviewAndRating/issues"
+  },
+  "homepage": "https://github.com/TeamDingo/ReviewAndRating#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-partials": "^0.3.0",
+    "lodash": "^4.17.20",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
+    "node-mocks-http": "^1.9.0",
+    "nodemon": "^2.0.6",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "jest": "^27.2.4",
+    "jsdoc": "^3.6.6",
+    "mocha": "^8.2.0"
+  }
+}

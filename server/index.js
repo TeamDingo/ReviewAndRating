@@ -8,15 +8,29 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Retrieves all review for a product
-app.get('/reviews/:productId', (req, res) => {
-  const reviewsArray = db.getReviews(req.params.productId);
-  res.send(reviewsArray);
+app.get('/reviews/:productId', async (req, res) => {
+  const count = req.query.count;
+  const sortString = 'newest:asc';
+  const productId = req.params.productId;
+  try {
+    const reviews = await db.getReviews(productId, sortString, count, 1);
+    res.status(200).send(reviews);
+  } catch (err) {
+    console.log(err.stack);
+    res.status(404).send();
+  }
 });
 
 // Retrieves all Review Metadata for a review
-app.get('/reviews/:productId/meta', (req, res) => {
-  const reviewMetaObj = db.getReviewsMeta(req.params.productId);
-  res.send(reviewMetaObj);
+app.get('/reviews/:productId/meta', async (req, res) => {
+  const productId = req.params.productId;
+  try {
+    const reviewsMetadata = await db.getReviewMetaData(productId);
+    res.status(200).send(reviewsMetadata);
+  } catch (err) {
+    console.log(err.stack);
+    res.status(404).send();
+  }
 });
 
 // Write a review

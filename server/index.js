@@ -35,6 +35,30 @@ app.get('/reviews/:productId/meta', async (req, res) => {
 
 // Write a review
 app.post('/reviews/:productId', (req, res) => {
+  try {
+    const success = await db.postReview(
+      req.params.productId,
+      req.body.rating,
+      req.body.summary,
+      req.body.body,
+      req.body.recommend,
+      req.body.name,
+      req.body.email,
+      req.body.photos,
+      req.body.characteristics
+    );
+    if (success) {
+      res.status(200).send();
+    } else {
+      res.status(400).send();
+    }
+  } catch (err) {
+    console.log('error posting question');
+    res.status(400).send();
+  }
+
+  const postReview = async (product_id, rating, summary, body, recommend, name, email, photos, characteristics) => {
+
   // db.writeReview(product_id, rating, summary, body, recommend, name, email, photos, characteristic_id);
   // res.send("added");
 });

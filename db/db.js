@@ -28,6 +28,9 @@ const getReviews = async (productId, sortString, count = 5, page = 1) => {
   if (sortParts[0] === 'newest' && sortParts[1] === "asc") {
     queryString = queryString + " ORDER BY date_field ASC ";
   }
+  if (sortParts[0] === 'helpful' && sortParts[1] === "desc") {
+    queryString = queryString + " ORDER BY helpfulness DESC ";
+  }
   queryString = queryString + "LIMIT " + count + ";";
   let response = {};
   response.product = productId;
@@ -77,14 +80,10 @@ const getReviewMetaData = async (productId) => {
 };
 
 //--------------------postReview-----------------------
-const postReview = (product_id, rating, summary, body, recommend, name, email, photos, characteristic_id) => {
-
-  // const queryString = 'INSERT INTO reviews (product_id, rating, summary, body, recommend, name, email, photos, characteristic_id) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?);';
-  // db.query(queryString, product_id, rating, summary, body, recommend, name, email, photos, characteristic_id)
-
+const postReview = async (product_id, rating, summary, body, recommend, name, email, photos, characteristics) => {
+  let queryString = 'INSERT INTO reviews (product_id, rating, summary, body, recommend, reviewer_name, reviewer_email, date_field, reported, response, helpfulness) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ';
+  const newReview = await db.queryAsync(queryString, [product_id, rating, summary, body, recommend, name, email, "2021-10-04", 'true', "response", 4]);
 };
-
-
 
 const reportReview = (reviewId) => {
   let queryString = 'UPDATE reviews SET reported = true WHERE id=' + reviewId +';';
@@ -98,7 +97,7 @@ const reportReview = (reviewId) => {
 // getReviews(2, "newest:asc", 5, 1, (err, results) => {
 //   console.log(results);
 // });
-getReviewMetaData(2);
+postReview(111111, 5, "summary", "body", 'true', 'name', 'email', null, null);
 module.exports = {
   getReviews,
   getReviewMetaData,

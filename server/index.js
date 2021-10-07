@@ -59,8 +59,8 @@ app.post('/reviews/:productId', (req, res) => {
 
   const postReview = async (product_id, rating, summary, body, recommend, name, email, photos, characteristics) => {
 
-  // db.writeReview(product_id, rating, summary, body, recommend, name, email, photos, characteristic_id);
-  // res.send("added");
+    db.postReview(product_id, rating, summary, body, recommend, name, email, photos, characteristic_id);
+    res.send("added");
 });
 
 app.put('/reviews/:review_id/helpful', (req, res) => {

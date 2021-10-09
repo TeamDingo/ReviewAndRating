@@ -47,7 +47,7 @@ const postReview = (
   photos,
   characteristics
 ) => {
-  return axios.post(`${url}/reviews/${id}`, {
+  return axios.post(`${reviewURL}/reviews/${id}`, {
     rating: rating,
     summary: summary,
     body: body,

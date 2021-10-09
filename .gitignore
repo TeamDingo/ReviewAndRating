@@ -1,3 +1,5 @@
+csv/
 node_modules
 frontend-capstone/node_modules
 db/config.js
+sdc_ratingandreview.pem

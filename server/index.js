@@ -34,7 +34,7 @@ app.get('/reviews/:productId/meta', async (req, res) => {
 });
 
 // Write a review
-app.post('/reviews/:productId', (req, res) => {
+app.post('/reviews/:productId', async (req, res) => {
   try {
     const success = await db.postReview(
       req.params.productId,
@@ -56,12 +56,13 @@ app.post('/reviews/:productId', (req, res) => {
     console.log('error posting question');
     res.status(400).send();
   }
-
-  const postReview = async (product_id, rating, summary, body, recommend, name, email, photos, characteristics) => {
-
-    db.postReview(product_id, rating, summary, body, recommend, name, email, photos, characteristic_id);
-    res.send("added");
 });
+
+// const postReview = async (product_id, rating, summary, body, recommend, name, email, photos, characteristics) => {
+
+//   db.postReview(product_id, rating, summary, body, recommend, name, email, photos, characteristic_id);
+//   res.send("added");
+// }
 
 app.put('/reviews/:review_id/helpful', (req, res) => {
 

@@ -82,7 +82,7 @@ const getReviewMetaData = async (productId) => {
 //--------------------postReview-----------------------
 const postReview = async (product_id, rating, summary, body, recommend, reviewer_name, reviewer_email, photos, characteristics) => {
   let queryString = 'INSERT INTO reviews (product_id, rating, summary, body, recommend, reviewer_name, reviewer_email, date_field, reported, response, helpfulness) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ';
-  const newReview = await db.queryAsync(queryString, [product_id, rating, summary, body, recommend, name, email, "2021-10-04", 'true', "response", 4]);
+  const newReview = await db.queryAsync(queryString, [product_id, rating, summary, body, recommend, reviewer_name, reviewer_email, "2021-10-04", 'true', "response", 4]);
 };
 
 const reportReview = (reviewId) => {
